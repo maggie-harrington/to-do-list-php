@@ -16,10 +16,12 @@
         $all_tasks = Task::getAll();
 
         if (!empty($all_tasks)) {
+            var_dump($all_tasks);
             $output = $output . "
                 <h1>To Do List</h1>
                 <p>Here are all your tasks:</p>
                 ";
+
             foreach ($all_tasks as $task) {
                 $output = $output . "<p>" . $task->getDescription() . "</p>";
             }
@@ -46,6 +48,7 @@
             <p>" . $task->getDescription() . "</p>
             <p><a href='/'>View your list of things to do.</a></p>
         ";
+
     });
 
     return $app;

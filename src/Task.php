@@ -3,9 +3,14 @@
     {
         private $description;
 
-        function __contruct($description)
+        // function __construct($description)
+        // {
+        //     $this->description = $description;
+        // }
+
+        function __construct($new_description)
         {
-            $this->description = $description;
+            $this->setDescription($new_description);
         }
 
         function setDescription($new_description)
