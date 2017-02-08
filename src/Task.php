@@ -3,14 +3,9 @@
     {
         private $description;
 
-        // function __construct($description)
-        // {
-        //     $this->description = $description;
-        // }
-
-        function __construct($new_description)
+        function __construct($description)
         {
-            $this->setDescription($new_description);
+            $this->description = $description;
         }
 
         function setDescription($new_description)
@@ -32,5 +27,11 @@
         {
             return $_SESSION['list_of_tasks'];
         }
+
+        static function deleteAll()
+        {
+            $_SESSION['list_of_tasks'] = array();
+        }
     }
+
 ?>
