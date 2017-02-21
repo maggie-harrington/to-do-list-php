@@ -3,10 +3,10 @@
         <title>To Do List</title>
     </head>
     <body>
-        <h1>{{ category.getName }}</h1>
+        <h1>To Do List: {{ category.getName }}</h1>
 
         {% if tasks is not empty %}
-            <p>Here are the tasks:</p>
+            <h4>Here are your tasks:</h4>
             <ul>
                 {% for task in tasks %}
                     <li>{{ task.getDescription }}</li>
@@ -24,7 +24,9 @@
             <button type='submit'>Add task</button>
         </form>
         <form action='/delete_tasks' method='post'>
-            <button type='submit'>delete</button>
+            <button type='submit'>Delete tasks</button>
         </form>
+
+        <p><a href='/'>Home</a></p>
     </body>
 </html>
