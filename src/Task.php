@@ -34,7 +34,7 @@
 
         function save()
         {
-          $GLOBALS['DB']->exec("INSERT INTO tasks (description, category_id) VALUES ('{$this->getDescription()}', {$this->getCategoryId()})");
+          $GLOBALS['DB']->exec("INSERT INTO tasks (description, category_id) VALUES ('{$this->getDescription()}', {$this->getCategoryId()});");
           $this->id = $GLOBALS['DB']->lastInsertId();
             // array_push($_SESSION['list_of_tasks'], $this);
         }
