@@ -6,6 +6,7 @@
     */
 
     require_once "src/Task.php";
+    require_once "src/Category.php";
 
     $server = 'mysql:host=localhost:8889;dbname=to_do_test';
     $username = 'root';
@@ -18,6 +19,21 @@
         protected function tearDown()
         {
             Task::deleteAll();
+            Category::deleteAll();
+        }
+
+        function test_getId()
+        {
+            //Arrange
+            $description = "Wash the dog";
+            $id = 1;
+            $test_Task = new Task($description, $id);
+
+            //Act
+            $result = $test_Task->getId();
+
+            //Assert
+            $this->assertEquals(1, $result);
         }
 
         function test_save()
@@ -51,18 +67,22 @@
             $this->assertEquals([$test_task, $test_task2], $result);
         }
 
-        function test_getId()
+        function test_deleteAll()
         {
             //Arrange
             $description = "Wash the dog";
-            $id = 1;
-            $test_Task = new Task($description, $id);
+            $description2 = "Water the lawn";
+            $test_task = new Task($description);
+            $test_task->save();
+            $test_task2 = new Task($description2);
+            $test_task2->save();
 
             //Act
-            $result = $test_Task->getId();
+            Task::deleteAll();
 
             //Assert
-            $this->assertEquals(1, $result);
+            $result = Task::getAll();
+            $this->assertEquals([], $result);
         }
 
         function test_find()
@@ -83,22 +103,5 @@
             $this->assertEquals($test_task, $result);
         }
 
-        function test_deleteAll()
-        {
-            //Arrange
-            $description = "Wash the dog";
-            $description2 = "Water the lawn";
-            $test_task = new Task($description);
-            $test_task->save();
-            $test_task2 = new Task($description2);
-            $test_task2->save();
-
-            //Act
-            Task::deleteAll();
-
-            //Assert
-            $result = Task::getAll();
-            $this->assertEquals([], $result);
-        }
     }
 ?>
