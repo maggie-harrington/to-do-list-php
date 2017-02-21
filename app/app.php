@@ -56,5 +56,10 @@
         return $app['twig']->render('index.html.twig');
     });
 
+    $app->get("/categories/{id}", function($id) use ($app) {
+        $category = Category::find($id);
+        return $app['twig']->render('category.html.twig', array('category' => $category, 'tasks' => $category->getTasks()));
+    });
+
     return $app;
 ?>
