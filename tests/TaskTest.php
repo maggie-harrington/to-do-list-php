@@ -25,22 +25,54 @@
         function test_getId()
         {
             //Arrange
+            $name = "Home stuff";
+            $id = null;
+            $test_category = new Category($name, $id);
+            $test_category->save();
+
             $description = "Wash the dog";
-            $id = 1;
-            $test_Task = new Task($description, $id);
+            $category_id = $test_category->getId;
+            $test_Task = new Task($description, $id, $category_id);
+            $test_task->save();
 
             //Act
             $result = $test_Task->getId();
 
             //Assert
-            $this->assertEquals(1, $result);
+            $this->assertEquals(true, is_numeric($result));
+        }
+
+        function test_getCategoryId()
+        {
+            //Arrange
+            $name = "Home stuff";
+            $id = null;
+            $test_category = new Category($name, $id);
+            $test_category->save();
+
+            $description = "Wash the dog";
+            $category_id = $test_category->getId();
+            $test_task = new Task($description, $id, $category_id);
+            $test_task->save();
+
+            //Act
+            $result = $test_task->getCategoryId();
+
+            //Assert
+            $this->assertEquals(true, is_numeric($result));
         }
 
         function test_save()
         {
             //Arrange
+            $name = "Home stuff";
+            $id = null;
+            $test_category = new Category($name, $id);
+            $test_category->save();
+
             $description = "Wash the dog";
-            $test_task = new Task($description);
+            $category_id = $test_category->getId();
+            $test_task = new Task($description, $id, $category_id);
 
             //Act
             $test_task->save();
@@ -53,11 +85,18 @@
         function test_getAll()
         {
             //Arrange
+            $name = "Home stuff";
+            $id = null;
+            $test_category = new Category($name, $id);
+            $test_category->save();
+
             $description = "Wash the dog";
-            $description2 = "Water the lawn";
-            $test_task = new Task($description);
+            $category_id = $test_category->getId();
+            $test_task = new Task($description, $id, $category_id);
             $test_task->save();
-            $test_task2 = new Task($description2);
+
+            $description2 = "Water the lawn";
+            $test_task2 = new Task($description2, $id, $category_id);
             $test_task2->save();
 
             //Act
@@ -70,11 +109,18 @@
         function test_deleteAll()
         {
             //Arrange
+            $name = "Home stuff";
+            $id = null;
+            $test_category = new Category($name, $id);
+            $test_category->save();
+
             $description = "Wash the dog";
-            $description2 = "Water the lawn";
-            $test_task = new Task($description);
+            $category_id = $test_category->getId();
+            $test_task = new Task($description, $id, $category_id);
             $test_task->save();
-            $test_task2 = new Task($description2);
+
+            $description2 = "Water the lawn";
+            $test_task2 = new Task($description2, $id, $category_id);
             $test_task2->save();
 
             //Act
@@ -88,11 +134,19 @@
         function test_find()
         {
             //Arrange
+            $name = "Home stuff";
+            $id = null;
+            $test_category = new Category($name, $id);
+            $test_category->save();
+
             $description = "Wash the dog";
-            $description2 = "Water the lawn";
-            $test_task = new Task($description);
+            $category_id = $test_category->getId();
+            $test_task = new Task($description, $id, $category_id);
             $test_task->save();
-            $test_task2 = new Task($description2);
+
+
+            $description2 = "Water the lawn";
+            $test_task2 = new Task($description2, $id, $category_id);
             $test_task2->save();
 
             //Act
