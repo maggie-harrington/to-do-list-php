@@ -9,7 +9,7 @@
             <h4>Here are your tasks:</h4>
             <ul>
                 {% for task in tasks %}
-                    <li>{{ task.getDescription }}</li>
+                    <li>{{ task.getDescription }} is due {{ task.getDueDate }}</li>
                 {% endfor %}
             </ul>
         {% endif %}
@@ -17,9 +17,13 @@
         <h4>Add a task</h4>
 
         <form action='/tasks' method='post'>
-            <input id="category_id" name="category_id" type="hidden" value="{{ category.getId }}">
+            <input id='category_id' name='category_id' type='hidden' value='{{ category.getId }}'>
+
             <label for='description'>Task Description</label>
             <input id='description' name='description' type='text'>
+
+            <label for='due_date'>Due Date</label>
+            <input id='due_date' name='due_date' type='date' value='<?php print(date("Y-m-d")); ?>'>
 
             <button type='submit'>Add task</button>
         </form>
