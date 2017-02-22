@@ -178,6 +178,27 @@
             $this->assertEquals([$test_category2], Category::getAll());
         }
 
+        function testDeleteCategoryTasks()
+        {
+            //Arrange
+            $name = "Work stuff";
+            $id = null;
+            $test_category = new Category($name, $id);
+            $test_category->save();
+
+            $description = "Build website";
+            $category_id = $test_category->getId();
+            $due_date = "1990-01-01";
+            $test_task = new Task($description, $id, $category_id, $due_date);
+            $test_task->save();
+
+            //Act
+            $test_category->delete();
+
+            //Assert
+            $this->assertEquals([], Task::getAll());
+        }
+
     }
 
 ?>
